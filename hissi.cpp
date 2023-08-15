@@ -49,13 +49,13 @@ void kelaaSisaan() {
 
 void kelaaAlas() {
   int laskuri = 0;
-  while (laskuri < 6) {
+  while (laskuri < 5) {
     Serial.println("KELATAAN ULOS JA SEKUNNIT ON " + sekunnit);
-    delay(3300);
+    delay(3350);
     myservo.write(140);
-    delay(3300);
+    delay(3350);
     myservo.write(90);
-    delay(3300);
+    delay(3350);
 
     laskuri++;
   }
@@ -100,8 +100,8 @@ void loop() {
   //kelaaUlos();
   //pysaytaVinssi();
   pysaytaVinssi();
-  if (sekunnit < 12) {
-    if (digitalRead(5) == LOW) {
+  if (sekunnit < 13) {
+    if (digitalRead(5) == LOW) { // nappain painettu vai ei
       Serial.println("Button is pressed");
       int alasLaskuLaskuri = 0;
       while (1 == 1) {
