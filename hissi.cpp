@@ -49,7 +49,7 @@ void kelaaSisaan() {
 
 void kelaaAlas() {
   int laskuri = 0;
-  while (laskuri < 3) {
+  while (laskuri < 7) {
     Serial.println("KELATAAN ULOS JA SEKUNNIT ON " + sekunnit);
     delay(3200);
     myservo.write(140);
@@ -80,17 +80,11 @@ void loop() {
     Serial.println("Button is pressed");
     int alasLaskuLaskuri = 0;
     delay(1000);
-    Serial.println("TURVAKYTKIN LAUKAISTU 3!");
-    while (alasLaskuLaskuri < 5) {
+    Serial.println("TURVAKYTKIN LAUKAISTU 77!");
       kelaaAlas();
-      kelaaAlas();
-      kelaaAlas();
-      kelaaAlas();
-      kelaaAlas();
-      kelaaAlas();
+
       delay(1000);
-      alasLaskuLaskuri++;
-    }
+    
     pysaytaVinssi();
     Serial.println("OLLAAN LOPETTU OHJELMA");
     exit(0);
