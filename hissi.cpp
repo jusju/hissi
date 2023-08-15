@@ -11,7 +11,7 @@ int sekunnit = 0;
 void setup() {
   delay(3000);
   pinMode(5, INPUT);
-  digitalWrite(5, HIGH); //activate arduino internal pull up
+  digitalWrite(5, INPUT_PULLUP); //activate arduino internal pull up
 
   myservo.attach(8);  // attaches the servo on pin 9 to the servo object
   // ajetaan vinssin kytkenta off asentoon
