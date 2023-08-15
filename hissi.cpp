@@ -48,12 +48,24 @@ void kelaaSisaan() {
 }
 
 void kelaaAlas() {
-  Serial.println("KELATAAN ULOS JA SEKUNNIT ON " + sekunnit);
-  delay(3600);
-  myservo.write(140);
-  delay(3600);
-  myservo.write(90);
-  delay(3600);
+  int laskuri = 0;
+  while (laskuri < 3) {
+    Serial.println("KELATAAN ULOS JA SEKUNNIT ON " + sekunnit);
+    delay(3200);
+    myservo.write(140);
+    delay(3200);
+    myservo.write(90);
+    delay(3200);
+    
+    laskuri++;
+  }
+  if (laskuri >= 3) {
+    exit(0);
+    while (1 == 1) {
+      pysaytaVinssi();  
+      Serial.println("OLLAAN LOPETTU OHJELMA");
+    }
+  }
 
 }
 
@@ -108,7 +120,7 @@ void loop() {
   sekunnit++;
   pysaytaVinssi();
   if (sekunnit > 13) {
-    if (sekunnit < 16) {
+    if (sekunnit < 15) {
       kelaaAlas();
       sekunnit++;
     }
@@ -117,7 +129,6 @@ void loop() {
     exit(0);
     while (1 == 1) {
       Serial.println("OLLAAN LOPETTU OHJELMA");
-      pysaytaVinssi();
     }
   }
 
