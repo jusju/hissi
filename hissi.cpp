@@ -28,7 +28,7 @@ void kelaaSisaan() {
     int alasLaskuLaskuri = 0;
     while (1 == 1) {
       delay(1000);
-      Serial.println("TURVAKYTKIN LAUKAISTU!");
+      Serial.println("TURVAKYTKIN LAUKAISTU! 1");
       while (alasLaskuLaskuri < 5) {
         kelaaAlas();
         kelaaAlas();
@@ -56,13 +56,13 @@ void kelaaAlas() {
     delay(3200);
     myservo.write(90);
     delay(3200);
-    
+
     laskuri++;
   }
   if (laskuri >= 3) {
     exit(0);
     while (1 == 1) {
-      pysaytaVinssi();  
+      pysaytaVinssi();
       Serial.println("OLLAAN LOPETTU OHJELMA");
     }
   }
@@ -79,17 +79,27 @@ void loop() {
   if (digitalRead(5) == LOW) {
     Serial.println("Button is pressed");
     int alasLaskuLaskuri = 0;
-    while (1 == 1) {
+    delay(1000);
+    Serial.println("TURVAKYTKIN LAUKAISTU 3!");
+    while (alasLaskuLaskuri < 5) {
+      kelaaAlas();
+      kelaaAlas();
+      kelaaAlas();
+      kelaaAlas();
+      kelaaAlas();
+      kelaaAlas();
       delay(1000);
-      Serial.println("TURVAKYTKIN LAUKAISTU!");
-      while (alasLaskuLaskuri < 5) {
-        kelaaAlas();
-        kelaaAlas();
-        kelaaAlas();
-        delay(1000);
-        alasLaskuLaskuri++;
-      }
+      alasLaskuLaskuri++;
     }
+    pysaytaVinssi();
+    Serial.println("OLLAAN LOPETTU OHJELMA");
+    exit(0);
+    while (1 == 1) {
+      Serial.println("OLLAAN LOPETTU OHJELMA");
+      pysaytaVinssi();
+    }
+
+
   }
 
   //kelaaUlos();
@@ -102,7 +112,7 @@ void loop() {
       int alasLaskuLaskuri = 0;
       while (1 == 1) {
         delay(1000);
-        Serial.println("TURVAKYTKIN LAUKAISTU!");
+        Serial.println("TURVAKYTKIN LAUKAISTU! 2");
         while (alasLaskuLaskuri < 5) {
           kelaaAlas();
           kelaaAlas();
@@ -129,6 +139,7 @@ void loop() {
     exit(0);
     while (1 == 1) {
       Serial.println("OLLAAN LOPETTU OHJELMA");
+      pysaytaVinssi();
     }
   }
 
