@@ -49,7 +49,7 @@ void kelaaSisaan() {
 
 void kelaaAlas() {
   int laskuri = 0;
-  while (laskuri < 7) {
+  while (laskuri < 5) {
     Serial.println("KELATAAN ULOS JA SEKUNNIT ON " + sekunnit);
     delay(3200);
     myservo.write(140);
