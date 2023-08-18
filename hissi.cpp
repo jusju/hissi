@@ -2,13 +2,26 @@
 
 #include <Servo.h>
 
-Servo myservo;  // create servo object to control a servo
+Servo myservo;
+Servo myservo1;
+Servo myservo2;
+Servo myservo3;
+Servo myservo4;
 // twelve servo objects can be created on most boards
 
 int pos = 0;    // variable to store the servo position
 int sekunnit = 0;
 
 void setup() {
+  myservo1.attach(0);
+  myservo2.attach(2);
+  myservo3.attach(7);
+  myservo4.attach(10);
+  myservo1.write(0);
+  myservo2.write(0);
+  myservo3.write(0);
+  myservo4.write(0);
+   
   delay(3000);
   pinMode(5, INPUT);
   digitalWrite(5, INPUT_PULLUP); //activate arduino internal pull up
@@ -16,46 +29,54 @@ void setup() {
   myservo.attach(8);  // attaches the servo on pin 9 to the servo object
   // ajetaan vinssin kytkenta off asentoon
   myservo.write(90);
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("ALOITETAAN ODOTTELU");
 
   delay(20000);
 }
 
 void kelaaSisaan() {
-  if (digitalRead(5) == LOW) {
-    Serial.println("Button is pressed");
-    int alasLaskuLaskuri = 0;
-    while (1 == 1) {
-      delay(1000);
-      Serial.println("TURVAKYTKIN LAUKAISTU! 1");
-      while (alasLaskuLaskuri < 5) {
-        kelaaAlas();
-        kelaaAlas();
-        kelaaAlas();
-        delay(1000);
-        alasLaskuLaskuri++;
-      }
-    }
+  while (digitalRead(5) != LOW) {
+
+    Serial.println("KELATAAN SISAAN JA SEKUNNIT ON " + sekunnit);
+    delay(500);
+    myservo.write(60);
+    delay(500);
+    myservo.write(90);
+    delay(500);
   }
 
-  Serial.println("KELATAAN SISAAN JA SEKUNNIT ON " + sekunnit);
-  delay(1250);
-  myservo.write(60);
-  delay(1250);
-  myservo.write(90);
-  delay(1250);
+  Serial.println("Button is pressed");
+  int alasLaskuLaskuri = 0;
+
+  delay(1000);
+  Serial.println("TURVAKYTKIN LAUKAISTU! 1");
+  while (alasLaskuLaskuri < 5) {
+    kelaaAlas();
+    kelaaAlas();
+    kelaaAlas();
+    kelaaAlas();
+    delay(1000);
+    alasLaskuLaskuri++;
+  }
+
+
+  while (1 == 1) {
+    Serial.println("JUKAN OHJELMA LOPETETTU!!");
+    pysaytaVinssi();
+  }
+
 }
 
 void kelaaAlas() {
   int laskuri = 0;
   while (laskuri < 5) {
     Serial.println("KELATAAN ULOS JA SEKUNNIT ON " + sekunnit);
-    delay(3350);
+    delay(3500);
     myservo.write(140);
-    delay(3350);
+    delay(3500);
     myservo.write(90);
-    delay(3350);
+    delay(3500);
 
     laskuri++;
   }
@@ -81,10 +102,10 @@ void loop() {
     int alasLaskuLaskuri = 0;
     delay(1000);
     Serial.println("TURVAKYTKIN LAUKAISTU 77!");
-      kelaaAlas();
+    kelaaAlas();
 
-      delay(1000);
-    
+    delay(1000);
+
     pysaytaVinssi();
     Serial.println("OLLAAN LOPETTU OHJELMA");
     exit(0);
