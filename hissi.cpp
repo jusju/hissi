@@ -7,45 +7,99 @@ Servo myservo1;
 Servo myservo2;
 Servo myservo3;
 Servo myservo4;
+Servo myservo5;
+Servo myservo6;
+Servo myservo7;
 // twelve servo objects can be created on most boards
 
 int pos = 0;    // variable to store the servo position
 int sekunnit = 0;
 
 void setup() {
-  myservo1.attach(0);
-  myservo2.attach(2);
-  myservo3.attach(7);
-  myservo4.attach(10);
-  myservo1.write(0);
-  myservo2.write(0);
-  myservo3.write(0);
-  myservo4.write(0);
-   
-  delay(3000);
-  pinMode(5, INPUT);
-  digitalWrite(5, INPUT_PULLUP); //activate arduino internal pull up
-
   myservo.attach(8);  // attaches the servo on pin 9 to the servo object
   // ajetaan vinssin kytkenta off asentoon
   myservo.write(90);
   Serial.begin(115200);
   Serial.println("ALOITETAAN ODOTTELU");
+  myservo.write(90);
+
+  myservo1.attach(0);
+  myservo2.attach(10);
+  myservo3.attach(7);
+  myservo4.attach(A0);
+  myservo5.attach(A5);
+  myservo6.attach(2);
+  myservo7.attach(4);
+  myservo1.write(0);
+  myservo2.write(0);
+  myservo3.write(0);
+  myservo4.write(0);
+  myservo5.write(0);
+  myservo6.write(0);
+  myservo7.write(0);
+  delay(3000);
+  pinMode(5, INPUT);
+  digitalWrite(5, INPUT_PULLUP); //activate arduino internal pull up
+
 
   delay(20000);
 }
 
 void kelaaSisaan() {
   while (digitalRead(5) != LOW) {
-
-    Serial.println("KELATAAN SISAAN JA SEKUNNIT ON " + sekunnit);
-    delay(500);
-    myservo.write(60);
-    delay(500);
-    myservo.write(90);
-    delay(500);
+    int i = 0;
+    for (i = 0; i < 62; i++) {
+      if (digitalRead(5) != LOW) {
+        Serial.println("KELATAAN SISAAN JA SEKUNNIT ON " + sekunnit);
+        delay(250);
+        myservo.write(60);
+        delay(250);
+        myservo.write(90);
+        delay(250);
+      }
+    }
+    break;
+  }
+  if (digitalRead(5) == LOW) {
+    Serial.println("NO NYT SE VASTUS TOIMII!");
+  }
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo1.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo2.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo3.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo4.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo5.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo6.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo7.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
   }
 
+  delay(3000);
   Serial.println("Button is pressed");
   int alasLaskuLaskuri = 0;
 
@@ -56,10 +110,14 @@ void kelaaSisaan() {
     kelaaAlas();
     kelaaAlas();
     kelaaAlas();
+    kelaaAlas();
+    kelaaAlas();
+    kelaaAlas();
+    kelaaAlas();
     delay(1000);
     alasLaskuLaskuri++;
   }
-
+  exit(0);
 
   while (1 == 1) {
     Serial.println("JUKAN OHJELMA LOPETETTU!!");
@@ -97,6 +155,11 @@ void pysaytaVinssi() {
 }
 
 void loop() {
+  // ajetaan vinssin kytkenta off asentoon
+  myservo.write(90);
+  Serial.begin(115200);
+  Serial.println("ALOITETAAN ODOTTELU");
+  myservo.write(90);
   if (digitalRead(5) == LOW) {
     Serial.println("Button is pressed");
     int alasLaskuLaskuri = 0;
