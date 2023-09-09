@@ -31,7 +31,7 @@ void setup() {
   myservo6.attach(2);
   myservo7.attach(4);
   myservo1.write(0);
-  myservo2.write(0);
+  myservo2.write(90);
   myservo3.write(0);
   myservo4.write(0);
   myservo5.write(0);
@@ -63,21 +63,17 @@ void kelaaSisaan() {
   if (digitalRead(5) == LOW) {
     Serial.println("NO NYT SE VASTUS TOIMII!");
   }
-  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-    // in steps of 1 degree
-    myservo1.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
-  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-    // in steps of 1 degree
-    myservo2.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
-  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-    // in steps of 1 degree
-    myservo3.write(pos);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-  }
+
+
+  /*
+    for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+      // in steps of 1 degree
+      myservo2.write(pos);              // tell servo to go to position in variable 'pos'
+      Serial.println("LAUKAISINTA KAYTETAAN");
+      delay(1000);                       // waits 15ms for the servo to reach the position
+    }
+  */
+
   for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
     myservo4.write(pos);              // tell servo to go to position in variable 'pos'
@@ -138,6 +134,12 @@ void kelaaAlas() {
 
     laskuri++;
   }
+
+  Serial.println("VEDETAAN SOKKA AUKI");
+  vedaSokkaAuki();
+  Serial.println("VEDETAAN SOKKA LOYSALLE");
+  vedaSokkaLoysalle();  
+  
   if (laskuri >= 3) {
     exit(0);
     while (1 == 1) {
@@ -146,6 +148,19 @@ void kelaaAlas() {
     }
   }
 
+}
+
+void vedaSokkaAuki() {
+  Serial.println("VEDETAAN SOKKA AUKI");
+  myservo2.write(180);
+  delay(2000);
+}
+
+void vedaSokkaLoysalle() {
+  Serial.println("VEDETAAN SOKKA AUKI");
+  myservo2.write(0);
+  delay(2000);
+  myservo2.write(90);
 }
 
 void pysaytaVinssi() {
